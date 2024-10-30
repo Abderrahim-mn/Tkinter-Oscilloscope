@@ -1,0 +1,88 @@
+Objectifs
+=========
+Realisation d'une IHM de simulation de signaux :
+
+ 1) d'oscilloscope (equations de mouvement vibratoire harmonique)
+ 2) d'évolution de population proies-prédateurs  (equations de Lotka-Volterra)
+ 3) dynamique de population  (equation logistique, modèle de verhulst)
+ 4) ...
+
+en se basant sur la mise en application du patron de conception MVC.
+Dans un premier temps on implémentera un simulateur d'oscilloscope.
+
+Consignes (à lire attentivement, comme tout ce qui est écrit dans ce fichier !)
+=========
+
+1) Recuperer sur votre compte utilisateur ($HOME/....) dans un repertoire  :
+   - Dupond_Dupont_TkInter/
+les fichiers qui se trouvent sous lerépertoire partagé :
+   - /home/TP/modules/sujets/CAI/TkInter/Labos/
+
+2) A la fin de CHAQUE seance de labo (17:30 au plus tard)
+   - créer l'archive Dupond_Dupont_TkInter.tgz de vos travaux en lançant la commande :
+       tar zcvf Dupond_Dupont_TkInter.tgz Dupond_Dupont_TkInter/
+   - deposer cette archive de version : 
+       cp Dupond_Dupont_TkInter.tgz /home/TP/TPrendu/nedelec/CAI/TkInter
+
+3) Avant de deposer l'archive, VERIFIER qu'elle n'est pas vide et qu'elle contient les  fichiers :
+     - controls.py           : le Controller MVC
+     - generator.py          : le Model MVC
+     - main.py               : l'application à lancer (le point d'entrée pour tester votre travail)
+     - observer.py           : le modèle Observer
+     - simulators.py         : les types de signaux à manipuler dans une IHM
+     - screen.py             : la View MVC
+     - Tests                 : des programmes de test pour votre application
+     - TODO.txt              : ce fichier en cours de lecture !
+     - utils.py              : des utilitaires pour votre application
+
+   en lançant la commande : tar ztvf Dupond_Dupont_Oscilloscope.tgz
+
+Premiere version : paramétrage d'un signal
+==========================================
+
+Affichage et contrôle d'un signal ("X") dans l'application  :
+ 1) décomposer la classe Generator initiale de l'application principale (main.py) suivant le modèle MVC :
+      - Modèle : classe Generator (generator.py)
+      - Vue  : classe Screen  (screen.py)
+      - Controleur : classe Controller (controls.py)
+ 2) contrôler le signal, par des sliders (Scale), en amplitude, frequence et phase 
+ 3) contrôler le nombre d'harmoniques du signal par un slider 
+ 4) contrôler les harmoniques paires, impaires par des boutons à comportement radio  (Radiobutton)
+ 5) agencer la vue et les contrôleurs dans des conteneurs (Frame, LabelFrame ...))
+ 6) réagencer automatiquement les composants graphiques en cas de retaillage de la fenetre
+ 7) configurer l'IHM (couleur,texte, positionnement des sliders ...) par un fichier d'options 
+ 8) proposer une animation d'un spot correspondant a l'elongation (after())
+ 9) inserer dans l'IHM la possibilite de parametrer le nombre d'échantillons sur la courbe du signal)
+ 
+Deuxieme version : Gestion de barre de Menu 
+===========================================
+1) Menu d'aide :
+   - About Us : informations (messagebox,filedialog  ...) avec (Nom,Prénom, e-mail)  des concepteurs de l'application
+   - About Tk : informations (messagebox,filedialog  ...) pour l'API utilisée pour développer l'IHM
+   - About Python : informations (messagebox,filedialog  ...) sur le langage utilisé pour développer l'IHM
+
+2) Menu de gestion de fichiers :
+   - Exit : sortie d'application
+      a) sans avertir l'utilisateur (exit())
+      b) avec boite de dialogue (messagebox,filedialog  ...) 
+   - Open : chargement des parametres de signaux
+      a) chargement d'un nom de fichier fixé par defaut dans l'application (json.load())
+      b) en utilisant une boite de dialogue pour sélectionner le nom de fichier (filedialog ...) 
+   - Save : sauvegarde des parametres de signaux
+      a) dans un nom de fichier fixé par defaut dans l'application (json.dump())
+      b) en utilisant une boite de dialogue pour sélectionner le nom de fichier (filedialog ...}) 
+   - Save Image (PIL) : sauvegarde de l'affichage (Canvas) dans un fichier (format png, jpg ...)
+      a) dans un nom de fichier fixé par defaut dans l'application
+      b) en utilisant une boite de dialogue pour sélectionner le répertoire et le nom de fihier
+ 
+Troisieme version : Gestion de plusieurs signaux 
+================================================
+ 1) gestion d'un deuxième signal ("Y") dans la même vue
+ 2) gestion d'affichage des signaux en mode ("X","Y", "X-Y")
+ 3) gestion d'affichage d'animation de spots sur les courbes X,Y et X-Y
+
+Reutilisation
+=============
+Reprendre la même IHM en l'adaptant aux autres modeles (Lotka-Volterra, Verhulst...)
+
+
